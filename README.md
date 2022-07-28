@@ -16,7 +16,7 @@
 - Created `tracker` instance of `PoseTracking` class creates `servo_` instance of `Servo` class([#67](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/pose_tracking.cpp#L67)), subscribes target pose([#71](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/pose_tracking.cpp#L71),[#239](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/pose_tracking.cpp#L239)) and publishes stamped target twist([#75](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/pose_tracking.cpp#L75)).
 - And `servo_` instance creates `servo_calcs_` instance of `ServoCalcs` class([#79](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/servo.cpp#L79))
 - `servo_calcs_` instance subscribes stamped target twist published by `tracker`([#101](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/servo_calcs.cpp#L101))
-- Finally, calculated command published in `servo_calcs_` instance([#127](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/servo_calcs.cpp#L127)) and will be subscribed by ur_robot_driver.
+- Finally, calculated command will be published in `servo_calcs_` instance([#127](https://github.com/dhlee04/-IROL-Moveit_UR/blob/9c5bedec394015011f0bbec9fa5adcd47bba6e96/moveit_servo/src/servo_calcs.cpp#L127)) and subscribed by ur_robot_driver.
 (std_msgs/Float64MultiArray message type for ros_control JointGroupVelocityController)
 
 
