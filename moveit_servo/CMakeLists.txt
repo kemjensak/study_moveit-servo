@@ -126,6 +126,12 @@ add_executable(spacenav_to_twist
 add_dependencies(spacenav_to_twist ${catkin_EXPORTED_TARGETS})
 target_link_libraries(spacenav_to_twist ${catkin_LIBRARIES})
 
+add_executable(ps5_to_twist
+  src/teleop_examples/ps5_to_twist.cpp
+)
+add_dependencies(ps5_to_twist ${catkin_EXPORTED_TARGETS})
+target_link_libraries(ps5_to_twist ${catkin_LIBRARIES})
+
 ##################
 ## INSTALLATION ##
 ##################
@@ -137,6 +143,7 @@ install(
     pose_tracking_example
     servo_server
     spacenav_to_twist
+    ps5_to_twist
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
