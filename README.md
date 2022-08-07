@@ -39,9 +39,13 @@
 - Eigen의 x-dimensional vector variable(VectorXd)인 `delta_x`에 위 과정을 통해 변환된 twist command 대입.
 - MatrixXd인 `jacobian`에 moveit_core의 `getJacobian` 메소드([#1269](https://github.com/ros-planning/moveit/blob/a63580edd05b01d9480c333645036e5b2b222da9/moveit_core/robot_state/src/robot_state.cpp#L1269))를 통해 jacobian matrix 대입.
 
-***--------------------이하 작성중--------------------***
-- 아래와 같은 특이값 분해(SVD)를 통해
--  pseudo inverse matrix를 구하고, 구한 matrix의 오른쪽에 `delta_x`를 곱하여 `delta_theta_`에 대입한다.
+- Eigen 특이값 분해(SVD) 모듈의 `JacobiSVD` 클래스를 통해  thin $U$와 thin ${V}$(reduced SVD) matrix, singular value들을 구한다.
+- 구한 singular value들은 `asDiagonal` 메소드를 통해 diagonal matrix인 $S$로 변환된다.
+- $U,S,V$ 모두를 구했으므로, 아래 식과 같은 계산을 통해 pseudo inverse를 통한 jacobian inverse를 구한다.
+ $$A = US{V^T},A^+ =  VS^+U^T$$
+
+-  이제 `delta_x`의 좌측에 위 과정을 통해 얻은 jacobian inverse인 `pseudo_inverse`를 곱한 결과가 joint의 angular velocity가 되며 이를 `delta_theta_`에 대입한다.
+
 
 ## 참고자료
 [MoveIt Servo Inverse Kinematics Improvements, 22/07/22](https://moveit.ros.org/moveit/ros/2022/07/22/MoveIt-Servo-Inverse-Kinematics.html)
