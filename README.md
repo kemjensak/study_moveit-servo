@@ -39,12 +39,12 @@
 - Eigen의 x-dimensional vector variable(VectorXd)인 `delta_x`에 위 과정을 통해 변환된 twist command 대입.
 - MatrixXd인 `jacobian`에 moveit_core의 `getJacobian` 메소드([#1269](https://github.com/ros-planning/moveit/blob/a63580edd05b01d9480c333645036e5b2b222da9/moveit_core/robot_state/src/robot_state.cpp#L1269))를 통해 jacobian matrix 대입.
 
-- Eigen 특이값 분해(SVD) 모듈의 `JacobiSVD` 클래스를 통해  thin $U$와 thin ${V}$(reduced SVD) matrix, singular value들을 구한다.
-- 구한 singular value들은 `asDiagonal` 메소드를 통해 diagonal matrix인 $S$로 변환된다.
-- $U,S,V$ 모두를 구했으므로, 아래 식과 같은 계산을 통해 pseudo inverse를 통한 jacobian inverse를 구한다.
+- Eigen 특이값 분해(SVD) 모듈의 `JacobiSVD` 클래스를 통해  thin $U$와 thin ${V}$(reduced SVD) matrix, singular value들을 구한다.[(#527)](https://github.com/dhlee04/-IROL-Moveit_UR/blob/a53577f8032243a7d577fd3d02e264fd6b0b3265/moveit_servo/src/servo_calcs.cpp#L527)
+- 구한 singular value들은 `asDiagonal` 메소드를 통해 diagonal matrix인 $S$로 변환된다.[(#529)](https://github.com/dhlee04/-IROL-Moveit_UR/blob/a53577f8032243a7d577fd3d02e264fd6b0b3265/moveit_servo/src/servo_calcs.cpp#L529)
+- $U,S,V$ 모두를 구했으므로, 아래 식과 같은 계산을 통해 pseudo inverse를 통한 jacobian inverse를 구한다.[(#530)](https://github.com/dhlee04/-IROL-Moveit_UR/blob/a53577f8032243a7d577fd3d02e264fd6b0b3265/moveit_servo/src/servo_calcs.cpp#L530)
  $$A = US{V^T},A^+ =  VS^+U^T$$
 
--  이제 `delta_x`의 좌측에 위 과정을 통해 얻은 jacobian inverse인 `pseudo_inverse`를 곱한 결과가 joint의 angular velocity가 되며 이를 `delta_theta_`에 대입한다.
+-  이제 `delta_x`의 좌측에 위 과정을 통해 얻은 jacobian inverse인 `pseudo_inverse`를 곱한 결과가 joint의 angular velocity가 되며 이를 `delta_theta_`에 대입한다.[(#532)](https://github.com/dhlee04/-IROL-Moveit_UR/blob/a53577f8032243a7d577fd3d02e264fd6b0b3265/moveit_servo/src/servo_calcs.cpp#L532)
 
 
 ## 참고자료
