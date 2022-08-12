@@ -51,3 +51,4 @@
 [MoveIt Servo Inverse Kinematics Improvements, 22/07/22](https://moveit.ros.org/moveit/ros/2022/07/22/MoveIt-Servo-Inverse-Kinematics.html)
 - 상기 jacobian pseudo inverse를 이용한 방법의 문제점으로 singularity에 근접한 경우 멈추는 문제 지적
 - A primary focus of this research is _redundancy resolution_, in which robots with redundant degrees of freedom may utilize alternative joint configurations to achieve the same end-effector pose. By doing so, robots may be enabled to better avoid singularities, avoid collisions, and lower power consumption, to name a few benefits.
+- MoveIT2 에서만 사용 가능
