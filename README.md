@@ -1,5 +1,5 @@
 
-# -IROL-Moveit_UR
+# moveit-ur
 
 `moveit_servo` is copied from [moveit_servo](https://github.com/ros-planning/moveit/tree/master/moveit_ros/moveit_servo "moveit_servo")
 
